@@ -6,7 +6,7 @@ type SenderToggleProps = {
   onToggle: () => void
 }
 
-export default function SenderToggle({sender, onToggle}: SenderToggleProps) {
+export default function SenderToggle({ sender, onToggle }: SenderToggleProps) {
   const isRobot = sender === 'robot'
 
   return (

@@ -47,7 +47,9 @@ export default function ChatInput({
       : 'border border-stone-200'
 
   return (
-    <div className={`rounded-lg bg-white p-3 shadow-sm ${cardBorder}`}>
+    <div
+      className={`rounded-lg bg-white p-4 shadow-sm transition-colors duration-200 ${cardBorder}`}
+    >
       <div className="flex items-end gap-2">
         <SenderToggle sender={sender} onToggle={onToggleSender} />
         <textarea
@@ -57,13 +59,13 @@ export default function ChatInput({
           onKeyDown={handleKeyDown}
           placeholder="Digite uma mensagem..."
           rows={1}
-          className="h-10 max-h-36 min-h-10 flex-1 resize-none overflow-y-auto bg-transparent px-2 py-2 leading-6 text-stone-900 outline-none"
+          className="h-10 max-h-36 min-h-10 flex-1 resize-none overflow-y-auto bg-transparent px-2 py-2 leading-6 text-stone-900 placeholder:text-stone-500 outline-none"
         />
         <button
           type="button"
           onClick={onSend}
           disabled={!canSend}
-          className="h-10 rounded-md bg-stone-800 px-4 text-sm font-medium text-white disabled:cursor-not-allowed disabled:bg-stone-300"
+          className="h-10 rounded-md bg-stone-800 px-4 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:bg-stone-300"
         >
           Enviar
         </button>

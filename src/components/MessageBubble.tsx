@@ -10,7 +10,9 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
   return (
     <div className={`flex ${alignment}`}>
-      <div className={`max-w-[80%] whitespace-pre-wrap wrap-break-word rounded-lg ${bubbleBackground} px-3 py-2 text-stone-900 shadow-sm`}>
+      <div
+        className={`max-w-[80%] whitespace-pre-wrap wrap-break-word rounded-lg ${bubbleBackground} px-4 py-3 text-stone-900 shadow-sm`}
+      >
         {message.text}
       </div>
     </div>
