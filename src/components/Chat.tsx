@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import type { Message } from '../types/message'
+import type { Message, Sender } from '../types/message'
 import ChatInput from './ChatInput'
 import MessageList from './MessageList'
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([])
   const [text, setText] = useState('')
+  const [sender, setSender] = useState<Sender>('user')
 
   function handleSend() {
     const trimmedText = text.trim()
@@ -17,11 +18,15 @@ export default function Chat() {
     const message: Message = {
       id: crypto.randomUUID(),
       text: trimmedText,
-      sender: 'user',
+      sender,
     }
 
-    setMessages([...messages, message])
+    setMessages((previousMessages) => [...previousMessages, message])
     setText('')
+  }
+
+  function handleToggleSender() {
+    setSender(sender === 'user' ? 'robot' : 'user')
   }
 
   return (
@@ -29,7 +34,13 @@ export default function Chat() {
       <div className="mx-auto flex h-dvh max-w-2xl flex-col bg-stone-100">
         <MessageList messages={messages} />
         <div className="px-4 pb-4">
-          <ChatInput text={text} onTextChange={setText} onSend={handleSend} />
+          <ChatInput
+            text={text}
+            sender={sender}
+            onTextChange={setText}
+            onSend={handleSend}
+            onToggleSender={handleToggleSender}
+          />
         </div>
       </div>
     </main>

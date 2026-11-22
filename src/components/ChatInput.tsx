@@ -1,15 +1,21 @@
 import { useEffect, useRef } from 'react'
+import type { Sender } from '../types/message'
+import SenderToggle from './SenderToggle'
 
 type ChatInputProps = {
   text: string
+  sender: Sender
   onTextChange: (text: string) => void
   onSend: () => void
+  onToggleSender: () => void
 }
 
 export default function ChatInput({
   text,
+  sender,
   onTextChange,
   onSend,
+  onToggleSender,
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const canSend = text.trim().length > 0
@@ -35,12 +41,15 @@ export default function ChatInput({
     }
   }
 
+  const cardBorder =
+    sender === 'robot'
+      ? 'border-2 border-purple-500'
+      : 'border border-stone-200'
+
   return (
-    <div className="rounded-lg border border-stone-200 bg-white p-3 shadow-sm">
+    <div className={`rounded-lg bg-white p-3 shadow-sm ${cardBorder}`}>
       <div className="flex items-end gap-2">
-        <div className="flex h-10 min-w-10 items-center justify-center rounded-md bg-stone-100 px-3 text-sm text-stone-700">
-          Usuario
-        </div>
+        <SenderToggle sender={sender} onToggle={onToggleSender} />
         <textarea
           ref={textareaRef}
           value={text}
