@@ -1,32 +1,100 @@
-# React + TypeScript + Vite
+# Chat Offline
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicação de chat desenvolvida com React, TypeScript e Vite. Ela permite simular uma conversa entre dois remetentes em uma interface simples e responsiva, sem comunicação com servidores ou armazenamento externo.
 
-Currently, two official plugins are available:
+O histórico existe somente na memória da aplicação e é perdido ao recarregar a página.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
 
-## React Compiler
+- Envio de mensagens como **usuário** ou **robô**
+- Alternância do remetente da próxima mensagem
+- Histórico em ordem cronológica
+- Mensagens de usuário alinhadas à direita
+- Mensagens de robô alinhadas à esquerda
+- Estado vazio até a primeira mensagem ser enviada
+- Auto-scroll para a mensagem mais recente
+- Textarea multilinha com expansão automática de altura
+- Enter para enviar e Shift + Enter para quebrar linha
+- Botão de envio desabilitado enquanto a mensagem estiver vazia
+- Destaque roxo no card de input no modo robô
+- Layout centralizado e responsivo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias
 
-## Expanding the Oxlint configuration
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS 4
+- Lucide React
+- Oxlint
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Pré-requisitos
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+- Node.js
+- npm
+
+## Como executar
+
+1. Instale as dependências:
+
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+2. Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+3. Abra a URL informada pelo Vite no terminal.
+
+## Scripts disponíveis
+
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Executa a compilação TypeScript e gera o build de produção |
+| `npm run lint` | Executa a análise estática com Oxlint |
+| `npm run preview` | Inicia o preview local do build de produção |
+
+## Estrutura do projeto
+
+```text
+src/
+├── components/
+│   ├── Chat.tsx
+│   ├── ChatInput.tsx
+│   ├── MessageBubble.tsx
+│   ├── MessageList.tsx
+│   └── SenderToggle.tsx
+├── types/
+│   └── message.ts
+├── App.tsx
+├── index.css
+└── main.tsx
+```
+
+### Responsabilidades
+
+- `Chat.tsx`: mantém o estado das mensagens, do texto e do remetente.
+- `MessageList.tsx`: renderiza o estado vazio ou a lista e realiza o auto-scroll.
+- `MessageBubble.tsx`: define o alinhamento e o estilo visual de cada mensagem.
+- `ChatInput.tsx`: gerencia o card de entrada, o textarea e o botão de envio.
+- `SenderToggle.tsx`: alterna entre os remetentes usuário e robô.
+- `message.ts`: define os tipos `Sender` e `Message`.
+
+## Comportamento do chat
+
+1. Ao abrir, o remetente padrão é **Usuário**.
+2. Digite uma mensagem no campo inferior.
+3. Pressione **Enter** ou clique em **Enviar**.
+4. Use **Shift + Enter** para adicionar uma quebra de linha.
+5. Clique no botão **Usuário/Robô** para alterar o remetente da próxima mensagem.
+6. Recarregar a página limpa todo o histórico.
+
+## Persistência e limitações
+
+Este projeto não utiliza banco de dados, API, autenticação, localStorage ou qualquer outro mecanismo de persistência.
+
+O conteúdo é texto plano. Recursos como edição, exclusão, horários, anexos, Markdown e formatação rica não fazem parte do projeto.
