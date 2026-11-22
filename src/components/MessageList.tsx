@@ -14,7 +14,7 @@ export default function MessageList({ messages }: MessageListProps) {
   }, [messages])
 
   return (
-    <section className="flex-1 overflow-y-auto px-4 py-6">
+    <section className="flex-1 overflow-y-auto px-4 py-6 pb-4">
       {messages.length === 0 ? (
         <div className="flex h-full items-center justify-center text-center text-stone-500">
           Nenhuma mensagem ainda. Envie a primeira!

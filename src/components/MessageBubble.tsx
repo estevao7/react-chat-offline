@@ -6,8 +6,7 @@ type MessageBubbleProps = {
 
 export default function MessageBubble({ message }: MessageBubbleProps) {
   const alignment = message.sender === 'user' ? 'justify-end' : 'justify-start'
-  const bubbleBackground =
-    message.sender === 'user' ? 'bg-stone-200' : 'bg-white'
+  const bubbleBackground = message.sender === 'user' ? 'bg-stone-200' : 'bg-white'
 
   return (
     <div className={`flex ${alignment}`}>
